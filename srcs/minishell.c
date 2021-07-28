@@ -6,7 +6,7 @@
 /*   By: ichougra <ichougra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/22 17:14:24 by ichougra          #+#    #+#             */
-/*   Updated: 2021/06/25 18:48:34 by ichougra         ###   ########.fr       */
+/*   Updated: 2021/06/30 16:55:08 by ichougra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,14 @@ void	redir_and_exec(t_mini *mini, t_token *token)
 	pipe = 0;
 	if (is_type(prev, TRUNC))
 		redir(mini, token, TRUNC);
-
 	else if (is_type(prev, APPEND))
 		redir(mini, token, APPEND);
-
 	else if (is_type(prev, INPUT))
 		input(mini, token);
-
 	else if (is_type(prev, NINPUT))
 		ninput(mini, token);
-
 	else if (is_type(prev, PIPE))
 		pipe = minipipe(mini);
-
 	if (next && is_type(next, END) == 0 && pipe != 1)
 		redir_and_exec(mini, next->next);
 	if ((is_type(prev, END) || is_type(prev, PIPE) || !prev)

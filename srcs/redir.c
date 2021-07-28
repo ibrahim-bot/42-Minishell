@@ -6,7 +6,7 @@
 /*   By: ichougra <ichougra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 15:47:34 by ichougra          #+#    #+#             */
-/*   Updated: 2021/06/25 19:54:52 by ichougra         ###   ########.fr       */
+/*   Updated: 2021/06/30 12:49:16 by ichougra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ void	redir(t_mini *mini, t_token *token, int type)
 void	input(t_mini *mini, t_token *token)
 {
 	ft_close(mini->fdin);
-	printf("%s\n", token->str);
 	mini->fdin = open(token->str, O_RDONLY, S_IRWXU);
-	printf("%d\n", mini->fdin);
 	if (mini->fdin == -1)
 	{
 		ft_putstr_fd("minishell: ", STDERR);
@@ -53,11 +51,25 @@ void	ninput(t_mini *mini, t_token *token)
 {
 	ft_close(mini->fdin);
 	mini->fdin = open(token->str, O_RDONLY, S_IRWXU);
-
-	ft_redi(token);
-
-	
+	if (mini->fdin == -1)
+	{
+		ft_putstr_fd("minishell: ", STDERR);
+		ft_putstr_fd(token->str, STDERR);
+		ft_putendl_fd(": No such file or directory", STDERR);
+		mini->ret = 1;
+		mini->no_exec = 1;
+		return ;
+	}
 	dup2(mini->fdin, STDIN);
+	printf("AAAAAAAA\n");
+ 	// ft_close(mini->fdin);
+ 	// mini->fdin = open(token->str, O_RDONLY, S_IRWXU);
+
+	 
+	// //ft_redi(token);
+
+	// printf("BBBBBBBBB\n");
+	// dup2(mini->fdin, STDIN);
 	
 }
 

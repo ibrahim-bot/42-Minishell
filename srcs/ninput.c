@@ -6,7 +6,7 @@
 /*   By: ichougra <ichougra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/25 16:55:17 by agachet           #+#    #+#             */
-/*   Updated: 2021/06/25 19:51:40 by ichougra         ###   ########.fr       */
+/*   Updated: 2021/06/30 11:27:34 by ichougra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_list	**ft_readline(char *str2, t_list **test)
 {
 	char	*str;
 
-
 	test = malloc(sizeof(t_list *) * 4086);
 	str = " ";
 	while (strcmp(str, str2) != 0)
@@ -54,8 +53,6 @@ t_list	**ft_readline(char *str2, t_list **test)
 
 void	ft_redi(t_token *token)
 {
-	printf("oo\n");
-
 	t_token	*tmp;
 	t_list	**res;
 	t_list	**test;
